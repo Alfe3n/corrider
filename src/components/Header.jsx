@@ -9,7 +9,7 @@ function Header(props) {
   const [flag, setFlag] = useState(true);
   return (
     <div className="mt-4">
-      <div className="first-row flex items-center font-extrabold text-2xl justify-between">
+      <div className="flex items-center justify-between text-2xl font-extrabold first-row">
         <div className="flex items-center gap-x-2">
           <IoArrowBackSharp />
           {flag ? (
@@ -17,10 +17,12 @@ function Header(props) {
               type="text"
               value={tripName}
               disabled
+              className="w-12"
               onChange={(e) => setTripName(e.target.value)}
             ></input>
           ) : (
             <input
+              className="w-12"
               type="text"
               value={tripName}
               onChange={(e) => setTripName(e.target.value)}
@@ -30,12 +32,12 @@ function Header(props) {
 
         <FiEdit onClick={() => setFlag(!flag)} />
       </div>
-      <div className="second-row flex items-center justify-between my-2">
-        <div className="h-8 bg-blue rounded-full">p</div>
+      <div className="flex items-center justify-between my-2 second-row">
+        <div className="h-8 rounded-full bg-blue">p</div>
         <div className="flex flex-col text-grey">
           <p>
             From
-            <span className=" text-black font-extrabold">
+            <span className="font-extrabold text-black ">
               {props.data.from}
             </span>
           </p>
