@@ -32,17 +32,17 @@ function Chatpage() {
   }, []);
 
   return (
-    <div className="page-container w-5/6 ">
+    <div className="w-5/6 page-container ">
       {data ? (
         <>
           <Header data={data} />
-          <div className="message-container flex flex-col w-full">
+          <div className="flex flex-col w-full message-container">
             {data.chats.map((item) =>
               item.sender.self ? (
                 <div key={item.id}>
-                  <div className="chat-container flex mb-4 bg-blue w-full self-end gap-x-2">
+                  <div className="flex self-end w-full p-2 mb-4 chat-container drop-shadow-lg bg-blue gap-x-2 rounded-b-xl rounded-tl-xl">
                     <p
-                      className="text-lg text-white"
+                      className="text-lg text-white bg-blue"
                       dangerouslySetInnerHTML={{ __html: item.message }}
                     ></p>
                   </div>
@@ -50,7 +50,7 @@ function Chatpage() {
               ) : (
                 <>
                   <div
-                    className="chat-container flex mb-4 w-full gap-x-2"
+                    className="flex w-full mb-4 chat-container gap-x-2 "
                     key={item.id}
                   >
                     <img
@@ -59,10 +59,12 @@ function Chatpage() {
                     ></img>
                     {/* <p className="text-lg text-grey">{item.message}</p>
                      */}
-                    <p
-                      className="text-lg text-grey"
-                      dangerouslySetInnerHTML={{ __html: item.message }}
-                    ></p>
+                    <div className="p-2 bg-white rounded-b-xl rounded-tr-xl drop-shadow-lg">
+                      <p
+                        className="text-lg bg-white text-grey rounded-xl"
+                        dangerouslySetInnerHTML={{ __html: item.message }}
+                      ></p>
+                    </div>
                   </div>
                 </>
               )
@@ -82,7 +84,7 @@ function Chatpage() {
           />
         </>
       )}
-      <div className=" flex items-center sticky bottom-0 w-full mb-10">
+      <div className="sticky bottom-0 flex items-center w-full mb-10 ">
         <input
           placeholder="Enter your message"
           type="text"
@@ -99,7 +101,7 @@ function Chatpage() {
             </PopoverTrigger>
             <PopoverContent>
               <PopoverArrow />
-              <PopoverBody className="rounded-full bg-green text-white">
+              <PopoverBody className="text-white rounded-full bg-green">
                 <div className="flex justify-around">
                   <AiOutlineCamera className="text-2xl" />
                   <FiVideo className="text-2xl" />
@@ -108,7 +110,7 @@ function Chatpage() {
               </PopoverBody>
             </PopoverContent>
           </Popover>
-          <AiOutlineSend className=" text-2xl " />
+          <AiOutlineSend className="text-2xl " />
         </div>
       </div>
     </div>
