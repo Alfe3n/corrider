@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { Spinner, Button } from "@chakra-ui/react";
 import { GrAttachment } from "react-icons/gr";
@@ -17,6 +17,7 @@ import Header from "./components/Header";
 function Chatpage() {
   const [data, setData] = useState(null);
   const [newMessage, setNewMessage] = useState("");
+  const messagesEndRef = useRef(null);
 
   useEffect(() => {
     axios
@@ -25,11 +26,20 @@ function Chatpage() {
         console.log(res.data);
         setData(res.data);
         console.log(data.chats);
+        scrollToBottom(); // Scroll to the last message
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
+
+  useEffect(() => {
+    scrollToBottom(); // Scroll to the last message whenever `data` changes
+  }, [data]);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <div className="w-5/6 page-container ">
@@ -57,8 +67,6 @@ function Chatpage() {
                       src={item.sender.image}
                       className="h-8 rounded-full "
                     ></img>
-                    {/* <p className="text-lg text-grey">{item.message}</p>
-                     */}
                     <div className="p-2 bg-white rounded-b-xl rounded-tr-xl drop-shadow-lg">
                       <p
                         className="text-lg bg-white text-grey rounded-xl"
@@ -69,11 +77,11 @@ function Chatpage() {
                 </>
               )
             )}
+            <div ref={messagesEndRef} /> {/* Ref for scrolling to the bottom */}
           </div>
         </>
       ) : (
         <>
-          {/* <p>hello</p> */}
           <Spinner
             thickness="4px"
             speed="0.65s"

@@ -8,7 +8,7 @@ function Header(props) {
   const [tripName, setTripName] = useState(props.data.name);
   const [flag, setFlag] = useState(true);
   return (
-    <div className="mt-4">
+    <div className="sticky top-0 z-10 w-full mt-4">
       <div className="flex items-center justify-between text-2xl font-extrabold first-row">
         <div className="flex items-center gap-x-2">
           <IoArrowBackSharp />
