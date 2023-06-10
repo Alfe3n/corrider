@@ -17,6 +17,7 @@ import Header from "./components/Header";
 function Chatpage() {
   const [data, setData] = useState(null);
   const [newMessage, setNewMessage] = useState("");
+  const [newData, setNewData] = useState([]);
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
@@ -40,6 +41,10 @@ function Chatpage() {
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
+  function sendNewMessage() {
+    setNewData([...newData, newMessage]);
+    console.log(newData);
+  }
 
   return (
     <div className="w-5/6 page-container ">
@@ -77,6 +82,17 @@ function Chatpage() {
                 </>
               )
             )}
+            {newData ? (
+              <>
+                {newData.map((item) => (
+                  <div className="flex self-end w-full p-2 mb-4 chat-container drop-shadow-lg bg-blue gap-x-2 rounded-b-xl rounded-tl-xl">
+                    <p className="text-lg text-white bg-blue">{item}</p>
+                  </div>
+                ))}
+              </>
+            ) : (
+              <></>
+            )}
             <div ref={messagesEndRef} /> {/* Ref for scrolling to the bottom */}
           </div>
         </>
@@ -100,7 +116,7 @@ function Chatpage() {
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
         />
-        <div className="flex items-center bg-white">
+        <div className="flex items-center bg-transparent">
           <Popover placement="top">
             <PopoverTrigger>
               <Button>
@@ -110,15 +126,17 @@ function Chatpage() {
             <PopoverContent>
               <PopoverArrow />
               <PopoverBody className="text-white rounded-full bg-green">
-                <div className="flex justify-around">
-                  <AiOutlineCamera className="text-2xl" />
-                  <FiVideo className="text-2xl" />
-                  <HiOutlineDocumentDownload className="text-2xl" />
+                <div className="flex justify-around bg-green">
+                  <AiOutlineCamera className="text-2xl bg-green" />
+                  <FiVideo className="text-2xl bg-green" />
+                  <HiOutlineDocumentDownload className="text-2xl bg-green" />
                 </div>
               </PopoverBody>
             </PopoverContent>
           </Popover>
-          <AiOutlineSend className="text-2xl " />
+          <button>
+            <AiOutlineSend className="text-2xl" onClick={sendNewMessage} />
+          </button>
         </div>
       </div>
     </div>
