@@ -1,10 +1,10 @@
 import "./App.css";
-
+import Chatpage from "./Chatpage";
 function App() {
   return (
-    <>
-      <p>hello</p>
-    </>
+    <div className="flex flex-col items-center">
+      <Chatpage />
+    </div>
   );
 }
 
