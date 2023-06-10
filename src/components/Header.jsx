@@ -34,7 +34,7 @@ function Header(props) {
       </div>
       <div className="flex items-center justify-between my-2 second-row">
         <div className="h-8 rounded-full bg-blue">p</div>
-        <div className="flex flex-col text-grey">
+        <div className="flex flex-col text-grey ">
           <p>
             From
             <span className="font-extrabold text-black ">
@@ -52,15 +52,15 @@ function Header(props) {
           </MenuButton>
           <MenuList>
             <MenuItem>
-              <div className="flex items-center">
-                <BsPeople />
-                <p className="ml-2">Members</p>
+              <div className="flex items-center bg-white">
+                <BsPeople className="bg-white" />
+                <p className="ml-2 bg-white">Members</p>
               </div>
             </MenuItem>
             <MenuItem>
               <div className="flex items-center">
-                <BsTelephone />
-                <p className="ml-2">Share Number</p>
+                <BsTelephone className="bg-white" />
+                <p className="ml-2 bg-white">Share Number</p>
               </div>
             </MenuItem>
 
