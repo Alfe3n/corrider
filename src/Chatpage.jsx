@@ -18,7 +18,8 @@ function Chatpage() {
   const [data, setData] = useState(null);
   const [newMessage, setNewMessage] = useState("");
   const [newData, setNewData] = useState([]);
-  const messagesEndRef = useRef(null);
+  const chatContainerRef = useRef(null);
+  // const messagesEndRef = useRef(null);
 
   useEffect(() => {
     axios
@@ -26,43 +27,53 @@ function Chatpage() {
       .then((res) => {
         console.log(res.data);
         setData(res.data);
-        console.log(data.chats);
-        scrollToBottom(); // Scroll to the last message
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
 
-  useEffect(() => {
-    scrollToBottom(); // Scroll to the last message whenever `data` changes
-  }, [data]);
+  // useEffect(() => {
+  //   scrollToBottom(); // Scroll to the last message whenever `data` changes
+  // }, [data]);
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
+  // const scrollToBottom = () => {
+  //   messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  // };
   function sendNewMessage() {
-    setNewData([...newData, newMessage]);
+    if (newMessage !== "") {
+      setNewData([...newData, newMessage]);
+      setNewMessage("");
+    }
     console.log(newData);
   }
+  const handleScroll = (e) => {
+    const bottom =
+      e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
+    if (bottom) {
+      setMessages([...messages, ...newMessages]);
+      setNewMessages([]);
+    }
+  };
 
   return (
-    <div className="w-5/6 page-container ">
+    <div className="w-full px-4 page-container " onScroll={handleScroll}>
       {data ? (
         <>
           <Header data={data} />
+          {/* <p>see older message</p> */}
           <div className="flex flex-col w-full message-container">
             {data.chats.map((item) =>
               item.sender.self ? (
-                <div key={item.id}>
-                  <div className="flex self-end w-full p-2 mb-4 chat-container drop-shadow-lg bg-blue gap-x-2 rounded-b-xl rounded-tl-xl">
-                    <p
-                      className="text-lg text-white bg-blue"
-                      dangerouslySetInnerHTML={{ __html: item.message }}
-                    ></p>
-                  </div>
+                // <div key={item.id}>
+                <div
+                  key={item.id}
+                  className="flex self-end p-2 mb-4 w-fit chat-container drop-shadow-lg bg-blue gap-x-2 rounded-b-xl rounded-tl-xl"
+                >
+                  <p className="text-lg text-white bg-blue">{item.message}</p>
                 </div>
               ) : (
+                // </div>
                 <>
                   <div
                     className="flex w-full mb-4 chat-container gap-x-2 "
@@ -75,8 +86,10 @@ function Chatpage() {
                     <div className="p-2 bg-white rounded-b-xl rounded-tr-xl drop-shadow-lg">
                       <p
                         className="text-lg bg-white text-grey rounded-xl"
-                        dangerouslySetInnerHTML={{ __html: item.message }}
-                      ></p>
+                        // dangerouslySetInnerHTML={{ __html: item.message }}
+                      >
+                        {item.message}
+                      </p>
                     </div>
                   </div>
                 </>
@@ -85,7 +98,7 @@ function Chatpage() {
             {newData ? (
               <>
                 {newData.map((item) => (
-                  <div className="flex self-end w-full p-2 mb-4 chat-container drop-shadow-lg bg-blue gap-x-2 rounded-b-xl rounded-tl-xl">
+                  <div className="flex self-end p-2 mb-4 w-fit chat-container drop-shadow-lg bg-blue gap-x-2 rounded-b-xl rounded-tl-xl">
                     <p className="text-lg text-white bg-blue">{item}</p>
                   </div>
                 ))}
@@ -93,7 +106,7 @@ function Chatpage() {
             ) : (
               <></>
             )}
-            <div ref={messagesEndRef} /> {/* Ref for scrolling to the bottom */}
+            {/* <div ref={messagesEndRef} /> */}
           </div>
         </>
       ) : (
@@ -108,15 +121,15 @@ function Chatpage() {
           />
         </>
       )}
-      <div className="sticky bottom-0 flex items-center w-full mb-10 ">
+      <div className="sticky bottom-0 flex items-center w-full p-2 mb-10">
         <input
           placeholder="Enter your message"
           type="text"
-          className="w-full h-10"
+          className="w-full h-10 font-lg"
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
         />
-        <div className="flex items-center bg-transparent">
+        <div className="flex items-center ">
           <Popover placement="top">
             <PopoverTrigger>
               <Button>
