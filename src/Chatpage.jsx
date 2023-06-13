@@ -18,7 +18,6 @@ function Chatpage() {
   const [data, setData] = useState(null);
   const [newMessage, setNewMessage] = useState("");
   const [newData, setNewData] = useState([]);
-  const chatContainerRef = useRef(null);
   // const messagesEndRef = useRef(null);
 
   useEffect(() => {
@@ -47,25 +46,18 @@ function Chatpage() {
     }
     console.log(newData);
   }
-  const handleScroll = (e) => {
-    const bottom =
-      e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
-    if (bottom) {
-      setMessages([...messages, ...newMessages]);
-      setNewMessages([]);
-    }
-  };
+
 
   return (
     <div
       className="items-center justify-center w-full px-4 page-container "
-      onScroll={handleScroll}
     >
       {data ? (
         <>
           <Header data={data} />
           {/* <p>see older message</p> */}
-          <div className="flex flex-col w-full text-sm message-container sm:text-base">
+          <div>
+<div className="flex flex-col w-full text-sm message-container ">
             {data.chats.map((item) =>
               item.sender.self ? (
                 // <div key={item.id}>
@@ -73,13 +65,13 @@ function Chatpage() {
                   key={item.id}
                   className="flex self-end p-2 mb-4 w-fit chat-container drop-shadow-lg bg-blue gap-x-2 rounded-b-xl rounded-tl-xl"
                 >
-                  <p className="text-lg text-white bg-blue">{item.message}</p>
+                  <p className="text-sm text-white bg-blue">{item.message}</p>
                 </div>
               ) : (
                 // </div>
                 <>
                   <div
-                    className="flex w-full mb-4 chat-container gap-x-2 "
+                    className="flex w-full mb-4 chat-container gap-x-2 sm:text-lg "
                     key={item.id}
                   >
                     <img
@@ -88,13 +80,15 @@ function Chatpage() {
                     ></img>
                     <div className="p-2 bg-white rounded-b-xl rounded-tr-xl drop-shadow-lg">
                       <p
-                        className="text-lg bg-white text-grey rounded-xl"
+                        className="text-sm bg-white text-grey rounded-xl"
                         // dangerouslySetInnerHTML={{ __html: item.message }}
                       >
                         {item.message}
                       </p>
                     </div>
                   </div>
+          </div>
+          
                 </>
               )
             )}
@@ -102,7 +96,7 @@ function Chatpage() {
               <>
                 {newData.map((item) => (
                   <div className="flex self-end p-2 mb-4 w-fit chat-container drop-shadow-lg bg-blue gap-x-2 rounded-b-xl rounded-tl-xl">
-                    <p className="text-lg text-white bg-blue">{item}</p>
+                    <p className="text-sm text-white bg-blue">{item}</p>
                   </div>
                 ))}
               </>
@@ -124,7 +118,7 @@ function Chatpage() {
           />
         </>
       )}
-      <div className="sticky flex items-center w-full p-2 bottom-4">
+      <div className="sticky bottom-0 flex items-center w-full p-2 mt-2">
         <input
           placeholder="Enter your message"
           type="text"
