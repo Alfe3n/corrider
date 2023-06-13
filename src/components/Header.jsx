@@ -8,10 +8,12 @@ function Header(props) {
   const [tripName, setTripName] = useState(props.data.name);
   const [flag, setFlag] = useState(true);
   return (
-    <div className="sticky top-0 z-10 w-full mt-4">
+    <div className="sticky top-0 z-10 w-full mt-4 bg-[#faf9f4]">
       <div className="flex items-center justify-between text-2xl font-extrabold first-row">
         <div className="flex items-center gap-x-2">
-          <IoArrowBackSharp />
+          <button>
+            <IoArrowBackSharp />
+          </button>
           {flag ? (
             <input
               type="text"
@@ -22,28 +24,38 @@ function Header(props) {
             ></input>
           ) : (
             <input
-              className="w-12"
+              className="w-12 border-2 border-black"
               type="text"
               value={tripName}
               onChange={(e) => setTripName(e.target.value)}
             ></input>
           )}
         </div>
-
-        <FiEdit onClick={() => setFlag(!flag)} />
+        <button>
+          <FiEdit onClick={() => setFlag(!flag)} />
+        </button>
       </div>
       <div className="flex items-center justify-between my-2 second-row">
-        <div className="h-8 rounded-full bg-blue">p</div>
+        {/* <div className="h-8 rounded-full bg-blue">
+          {props.data.chats.map((item) => {
+
+            return <img src={item.sender.image} className="h-8 rounded-full" />;
+          })}
+        </div> */}
+        <div></div>
         <div className="flex flex-col text-grey ">
           <p>
             From
-            <span className="font-extrabold text-black ">
+            <span className="ml-2 font-extrabold text-black ">
               {props.data.from}
             </span>
           </p>
           <p>
-            To{" "}
-            <span className="font-extrabold text-black "> {props.data.to}</span>
+            To
+            <span className="ml-2 font-extrabold text-black ">
+              {" "}
+              {props.data.to}
+            </span>
           </p>
         </div>
         <Menu placement="bottom">
@@ -73,7 +85,7 @@ function Header(props) {
           </MenuList>
         </Menu>
       </div>
-      <hr className="my-6"></hr>
+      <hr className="w-screen my-6"></hr>
     </div>
   );
 }
