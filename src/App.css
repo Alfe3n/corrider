@@ -1,7 +1,8 @@
 /* popup */
 .css-sjj62m {
-  background-color: transparent !important;
+  background-color: black !important;
   border-style: none !important;
+  border-radius: 50px !important;
 }
 /* expanded menu */
 .css-1kfu8nn {
@@ -12,5 +13,13 @@
   background-color: #008000 !important;
 }
 .css-ez23ye {
+  background-color: white !important;
+}
+.css-ez23ye {
+  background-color: #faf9f4 !important;
+}
+
+/* menu */
+.css-18esm8n {
   background-color: white !important;
 }
