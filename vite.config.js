@@ -4,11 +4,15 @@ import { VitePWA } from "vite-plugin-pwa";
 
 const manifestForPlugin = {
   registerType: "prompt",
-  includeAssets: ["favicon.ico", "apple-touch-icon.png", "masked-icon.svg"],
+  includeAssets: [
+    "android-chrome-512x512.png",
+    "android-chrome-192x192.png",
+    // "masked-icon.svg",
+  ],
   manifest: {
-    name: "Weather Ups",
-    short_name: "Weathe Ups",
-    description: "An app that can show weather forecast for your city.",
+    name: "Chat App",
+    short_name: "ChatAppp",
+    description: "chat interface.",
     icons: [
       {
         src: "/android-chrome-192x192.png",
@@ -21,13 +25,13 @@ const manifestForPlugin = {
         type: "image/png",
       },
       {
-        src: "/apple-touch-icon.png",
+        src: "/android-chrome-192x192.png",
         sizes: "180x180",
         type: "image/png",
         purpose: "apple touch icon",
       },
       {
-        src: "/maskable_icon.png",
+        src: "/android-chrome-192x192.png",
         sizes: "225x225",
         type: "image/png",
         purpose: "any maskable",

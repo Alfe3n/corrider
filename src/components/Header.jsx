@@ -19,12 +19,12 @@ function Header(props) {
               type="text"
               value={tripName}
               disabled
-              className="w-12"
+              className=" w-fit"
               onChange={(e) => setTripName(e.target.value)}
             ></input>
           ) : (
             <input
-              className="w-12 border-2 border-black"
+              className="px-1 border-2 border-black rounded-md w-fit"
               type="text"
               value={tripName}
               onChange={(e) => setTripName(e.target.value)}

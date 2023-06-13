@@ -124,7 +124,7 @@ function Chatpage() {
           />
         </>
       )}
-      <div className="sticky flex items-center w-screen p-2 bottom-4">
+      <div className="sticky flex items-center w-full p-2 bottom-4">
         <input
           placeholder="Enter your message"
           type="text"
