@@ -57,12 +57,15 @@ function Chatpage() {
   };
 
   return (
-    <div className="w-full px-4 page-container " onScroll={handleScroll}>
+    <div
+      className="items-center justify-center w-full px-4 page-container "
+      onScroll={handleScroll}
+    >
       {data ? (
         <>
           <Header data={data} />
           {/* <p>see older message</p> */}
-          <div className="flex flex-col w-full message-container">
+          <div className="flex flex-col w-full text-sm message-container sm:text-base">
             {data.chats.map((item) =>
               item.sender.self ? (
                 // <div key={item.id}>
@@ -121,7 +124,7 @@ function Chatpage() {
           />
         </>
       )}
-      <div className="sticky bottom-0 flex items-center w-full p-2 mb-10">
+      <div className="sticky flex items-center w-screen p-2 bottom-4">
         <input
           placeholder="Enter your message"
           type="text"
