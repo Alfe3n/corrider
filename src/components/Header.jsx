@@ -19,12 +19,12 @@ function Header(props) {
               type="text"
               value={tripName}
               disabled
-              className=" w-fit"
+              className="w-1/2 text-xl font-extrabold"
               onChange={(e) => setTripName(e.target.value)}
             ></input>
           ) : (
             <input
-              className="px-1 border-2 border-black rounded-md w-fit"
+              className="w-1/2 px-1 text-xl font-extrabold border-2 border-black rounded-md"
               type="text"
               value={tripName}
               onChange={(e) => setTripName(e.target.value)}
@@ -53,7 +53,6 @@ function Header(props) {
           <p>
             To
             <span className="ml-2 font-extrabold text-black ">
-              {" "}
               {props.data.to}
             </span>
           </p>
@@ -70,16 +69,16 @@ function Header(props) {
               </div>
             </MenuItem>
             <MenuItem>
-              <div className="flex items-center">
+              <div className="flex items-center bg-white">
                 <BsTelephone className="bg-white" />
                 <p className="ml-2 bg-white">Share Number</p>
               </div>
             </MenuItem>
 
             <MenuItem>
-              <div className="flex items-center">
+              <div className="flex items-center bg-white">
                 <GoReport />
-                <p className="ml-2">Report</p>
+                <p className="ml-2 bg-white">Report</p>
               </div>
             </MenuItem>
           </MenuList>
